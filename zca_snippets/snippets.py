@@ -36,7 +36,7 @@ class ZCASnippets(object):
     @property
     def {attr[name]}(self):
         pass
-            """.format(attr=attr))
+""".format(attr=attr))
         for method in self.detector.parse_methods(iface):
             required = (k for k,v in method["positional"] if v is positional)
             optionals = ("=".join((k, json.dumps(v))) for k, v in method["positional"] if not v is positional)
@@ -44,7 +44,7 @@ class ZCASnippets(object):
             self.out("""\
     def {method[name]}(self, {args}{varargs}{kwargs}):
         pass
-            """.format(method=method, 
+""".format(method=method, 
                        args=args, 
                        varargs="" if method["args"] is None else ", *{}".format(method["args"]), 
                        kwargs="" if method["kwargs"] is None else ", **{}".format(method["kwargs"])
@@ -54,14 +54,16 @@ class ZCASnippets(object):
 
 def main():
     parser = argparse.ArgumentParser(description="-")
-    parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--quiet", "-q", action="store_true")
+    parser.add_argument("--base", "-b", action="store_true")
     parser.add_argument("program")
     parser.add_argument("iface")
     parser.add_argument("name", nargs="?")
-    parser.set_defaults(verbose=True)
+    parser.set_defaults(quiet=False, base=False)
     args = parser.parse_args(sys.argv)
+    verbose = not args.quiet
 
     detector = InfoDetector()
     iface = detector.maybe_dotted(args.iface)
-    snippets = ZCASnippets(sys.stdout, detector)
+    snippets = ZCASnippets(sys.stdout, detector, verbose=verbose, base_depends=args.base)
     snippets.dump_snippets(iface, args.name)
