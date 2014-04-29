@@ -14,7 +14,7 @@ class ZCAListing(object):
             if isinstance(v, InterfaceClass):
                 module = self.detector.module_path(v)
                 ifacename = self.detector.object_name(v)
-                print("{}:{}".format(module, ifacename))
+                self.io.write("{}:{}\n".format(module, ifacename))
 
 def main():
     parser = argparse.ArgumentParser(description="-")
