@@ -18,7 +18,7 @@ setup(name='zca_snippets',
       test_suite="zca_snippets.tests", 
       entry_points = """
       [console_scripts]
-      zca_snippets = zca_snippets.snippets:main
-      zca_list = zca_snippets.list:main
+      zca-snippets = zca_snippets.snippets:main
+      zca-list = zca_snippets.list:main
       """,
       )

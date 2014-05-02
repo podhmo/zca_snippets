@@ -1,14 +1,14 @@
 zca_snippets
 ========================================
 
-* zca_list
-* zca_snippets
+* zca-list
+* zca-snippets
 
-zca_list
+zca-list
 
 .. code:: shell
 
-    $ zca_list pyramid.interfaces
+    $ zca-list pyramid.interfaces
     pyramid.interfaces:ITranslationDirectories
     pyramid.interfaces:INewRequest
     pyramid.interfaces:IRootFactory
@@ -21,11 +21,11 @@ zca_list
     pyramid.interfaces:IMultiDict
     pyramid.interfaces:IAuthenticationPolicy
 
-zca_snippets
+zca-snippets
 
 .. code:: shell
 
-    $ zca_snippets pyramid.interfaces:IAuthenticationPolicy
+    $ zca-snippets pyramid.interfaces:IAuthenticationPolicy
     from zope.interface import implementer
     from pyramid.interfaces import IAuthenticationPolicy
 
@@ -49,7 +49,7 @@ zca_snippets
 
 .. code:: shell
 
-	$ zca_snippets -q pyramid.interfaces:IAuthorizationPolicy
+	$ zca-snippets -q pyramid.interfaces:IAuthorizationPolicy
     ## see: pyramid.interfaces:IAuthorizationPolicy
     @implementer(IAuthorizationPolicy)
     class AuthorizationPolicy(object):
